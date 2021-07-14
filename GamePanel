@@ -17,7 +17,7 @@ public class Game {
 	Container con;
 	JPanel startPanel, startButton, message, choiceButton;
 	JLabel startLabel;
-	Font title = new Font("Times New Roman", Font.PLAIN, 60);
+	Font title = new Font("Montserrat", Font.PLAIN, 60);
 	Font buttonFont = new Font("Times New Roman", Font.PLAIN, 15);
 	JButton start, choice1, choice2, choiceCancel;
 	JTextArea messageText;
