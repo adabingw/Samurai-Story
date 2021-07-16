@@ -23,6 +23,7 @@ public class Game {
 	JTextArea messageText;
 	TitleScreenClicks tsClick = new TitleScreenClicks();
 	ChoiceHandler cHandler = new ChoiceHandler();
+	cancelClick cancelling = new cancelClick();
 	@SuppressWarnings("unused")
 	private String position;
 	
@@ -102,7 +103,7 @@ public class Game {
 		choiceCancel.setBackground(Color.black);
 		choiceCancel.setForeground(Color.white);
 		choiceCancel.setFont(buttonFont);
-		choiceCancel.addActionListener(cHandler);
+		choiceCancel.addActionListener(cancelling);
 		choiceCancel.setActionCommand("cancel");
 		choiceButton.add(choiceCancel);
 
@@ -122,6 +123,12 @@ public class Game {
 			
 			} 
 		
+	}
+	
+	public class cancelClick implements ActionListener {
+		public void actionPerformed(ActionEvent event) {
+			System.exit(0);
+		}
 	}
 	
 } // we can add levels and score later
