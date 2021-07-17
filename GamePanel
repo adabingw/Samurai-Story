@@ -18,7 +18,7 @@ public class Game {
 	Container con;
 	JPanel startPanel, startButton, message, choiceButton;
 	JLabel startLabel;
-	Font title = new Font("Montserrat", Font.PLAIN, 60);
+	Font title = new Font("Times New Roman", Font.PLAIN, 60);
 	Font normalFont = new Font("Times New Roman", Font.PLAIN, 15);
 	JButton start, choice1, choice2, choiceCancel;
 	JTextArea messageText;
@@ -85,11 +85,12 @@ public class Game {
 		messageText.setForeground(Color.white);
 		messageText.setFont(normalFont);
 		messageText.setWrapStyleWord(true);
+		messageText.setLineWrap(true);
 		message.add(messageText);
 		
 		choiceButton = new JPanel();
-		choiceButton.setBounds(250, 350, 300, 150);
-		choiceButton.setBackground(Color.red);
+		choiceButton.setBounds(150, 350, 500, 150);
+		choiceButton.setBackground(Color.black);
 		choiceButton.setLayout(new GridLayout(3, 1));
 		con.add(choiceButton);
 		
@@ -125,7 +126,14 @@ public class Game {
 	public void start() {
 		position = "start";
 		
-		messageText.setText("You wield the magical samurai sword that has been passed down in your family for generations, but you’re unsure how to use it as it is also a family tradition for the wielder to discover their limits themselves. Unfortunately, you are also assigned personal bodyguard for the emperor of Japan before you are able to even discover the slightest magical ability of the sword (so far, it just looks like an old metal sword). Even worse, you hear rumours on the streets that there is an assassination plan schemed against the emperor. Unknowing who, what, where, when, and how (you probably know why - angry people), it is up to you to figure out who’s behind this and save the emperor’s life - after all, not being able to protect the emperor leads to your shameful seppuku. With your trusty (or rusty) magical samurai sword, you must dive undercover into the dark, underground society and use your wits to figure out who can be trusted - or is it that simple?");
+		messageText.setText("You wield the magical samurai sword that has been passed down in your family for generations," 
+		+ " but you’re unsure how to use it as it is also a family tradition for the wielder to discover their limits themselves."
+		+ " Unfortunately, you are also assigned personal bodyguard for the emperor of Japan before you are able to even discover"
+		+ " the slightest magical ability of the sword (so far, it just looks like an old metal sword)."
+		+ " Even worse, you hear rumours on the streets that there is an assassination plan schemed against the emperor. Unknowing who, what, where, when, and how,"
+		+ " it is up to you to figure out who’s behind this and save the emperor’s life - after all, not being able to protect the emperor leads to your shameful seppuku." 
+		+ " With your trusty (or rusty) magical samurai sword, you must dive undercover into the dark, underground society and"
+		+ " use your wits to figure out who can be trusted - or is it that simple?");
 		
 		choice1.setText("Continue");
 		choice2.setText("");
@@ -134,8 +142,7 @@ public class Game {
 	
 	public void streets() {
 		position = "streets";
-		messageText.setFont(normalFont);
-		messageText.setText("While on the street, you overhear plot of \nassassinating the emperor, try to find out \ninformation, thugs run away");
+		messageText.setText("While on the street, you overhear plot of assassinating the emperor, try to find out information, thugs run away");
 		
 		choice2.setVisible(true);
 		choice1.setText("Follow thug");
@@ -284,7 +291,7 @@ public class Game {
 	
 	public void hesistate() {
 		position = "hesistate";
-		messageText.setText(" the guards break through the barricade. You are hit in the head and fall unconscious as the emperor tries his best to fend for himself.");
+		messageText.setText("The guards break through the barricade. You are hit in the head and fall unconscious as the emperor tries his best to fend for himself.");
 		
 		choice1.setText("Continue");
 		choice2.setText("");
@@ -330,7 +337,11 @@ public class Game {
 		}
 	}
 	
-	
+	public class cancelClick implements ActionListener {
+		public void actionPerformed(ActionEvent event) {
+			System.exit(0);
+		}
+	}
 	
 	public class ChoiceHandler implements ActionListener {
 		public void actionPerformed(ActionEvent event) {
@@ -426,12 +437,6 @@ public class Game {
 			
 			} 
 		
-	}
-	
-	public class cancelClick implements ActionListener {
-		public void actionPerformed(ActionEvent event) {
-			System.exit(0);
-		}
 	}
 	
 }
