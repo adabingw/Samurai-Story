@@ -515,4 +515,18 @@ public class Game {
 	}
 	
 }
+
+	public static void main (String[] args) {
+		new MainGame();
+		try {
+			FileInputStream fis = new FileInputStream("BGM.mp3");
+			Player player = new Player(fis);
+			player.play();
+			System.out.println("Song is playing!");
+		} catch(FileNotFoundException e) {
+			e.printStackTrace();
+		} catch(JavaLayerException e) {
+			e.printStackTrace();
+		}
+	}
 }
