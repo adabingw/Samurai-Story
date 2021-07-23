@@ -19,7 +19,7 @@ public class Game {
 	JPanel startPanel, startButton, message, choiceButton;
 	JLabel startLabel;
 	Font title = new Font("Tempus Sans ITC", Font.PLAIN, 60);
-	Font normalFont = new Font("Times New Roman", Font.PLAIN, 15);
+	Font normalFont = new Font("Tempus Sans ITC", Font.PLAIN, 15);
 	JButton start, choice1, choice2, choiceCancel;
 	JTextArea messageText;
 	TitleScreenClicks tsClick = new TitleScreenClicks();
