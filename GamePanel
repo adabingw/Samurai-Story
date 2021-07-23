@@ -38,14 +38,12 @@ public class Game {
 		 }
 		
 		f = new JFrame();
-		f.setSize(800, 600);
+		f.setBounds(100, 100, 800, 600);
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		f.getContentPane().setBackground(Color.black);
-		f.setLayout(null);
 		con = f.getContentPane();
 		
 		startPanel = new JPanel();
-		startPanel.setBounds(100, 100, 600, 150);
 		startPanel.setBackground(Color.black);
 		
 		startLabel = new JLabel("CURIOUS SAMURAI");
@@ -53,7 +51,6 @@ public class Game {
 		startLabel.setFont(title);
 		
 		startButton = new JPanel();
-		startButton.setBounds(300, 400, 200, 100);
 		startButton.setBackground(Color.black);
 		
 		start = new JButton("START");
@@ -63,42 +60,77 @@ public class Game {
 		start.addActionListener(tsClick);
 		start.setFocusPainted(false);
 		
+		Box horizontalBox = Box.createHorizontalBox();
+		startPanel.add(horizontalBox);
+		
 		startPanel.add(startLabel);
 		startButton.add(start);
-		
-		con.add(startPanel);
-		con.add(startButton);
+		GroupLayout groupLayout = new GroupLayout(f.getContentPane());
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(100)
+					.addComponent(startPanel, GroupLayout.DEFAULT_SIZE, 602, Short.MAX_VALUE)
+					.addGap(84))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(300)
+					.addComponent(startButton, GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+					.addGap(286))
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(98)
+					.addComponent(startPanel, GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
+					.addGap(222)
+					.addComponent(startButton, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
+					.addGap(127))
+		);
+		f.getContentPane().setLayout(groupLayout);
 		f.setVisible(true);
 	}
 	
 	public void GameScreen() {
-		message = new JPanel();
-		message.setBounds(100, 100, 600, 250);
-		message.setBackground(Color.black);
+		JPanel message = new JPanel();
+		message.setBounds(150, 150, 600, 300);
+		message.setBackground(Color.BLACK);
 		con.add(message);
 		startPanel.setVisible(false);
-		startButton.setVisible(false);  
-
-		messageText = new JTextArea();
-		messageText.setBounds(100, 100, 600, 250);
-		messageText.setBackground(Color.black);
-		messageText.setForeground(Color.white);
-		messageText.setFont(normalFont);
-		messageText.setWrapStyleWord(true);
-		messageText.setLineWrap(true);
-		message.add(messageText);
+		startButton.setVisible(false);
 		
 		choiceButton = new JPanel();
-		choiceButton.setBounds(150, 350, 500, 150);
+		choiceButton.setBounds(150, 350, 100, 50);
 		choiceButton.setBackground(Color.black);
+		choiceButton.setForeground(Color.black);
 		choiceButton.setLayout(new GridLayout(3, 1));
 		con.add(choiceButton);
+		
+		GroupLayout groupLayout = new GroupLayout(f.getContentPane());
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.TRAILING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(50)
+					.addComponent(message, GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
+					.addGap(50))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(160)
+					.addComponent(choiceButton, GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)
+					.addGap(170))
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(120)
+					.addComponent(message, GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(choiceButton, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
+					.addGap(50))
+		);
 		
 		choice1 = new JButton();
 		choice1.setBackground(Color.black);
 		choice1.setForeground(Color.white);
 		choice1.setFont(normalFont);
-		choice1.setFocusPainted(false);
 		choice1.addActionListener(cHandler);
 		choice1.setActionCommand("c1");
 		choiceButton.add(choice1);
@@ -107,7 +139,6 @@ public class Game {
 		choice2.setBackground(Color.black);
 		choice2.setForeground(Color.white);
 		choice2.setFont(normalFont);
-		choice2.setFocusPainted(false);
 		choice2.addActionListener(cHandler);
 		choice2.setActionCommand("c2");
 		choiceButton.add(choice2);
@@ -120,9 +151,22 @@ public class Game {
 		choiceCancel.setActionCommand("cancel");
 		choiceButton.add(choiceCancel);
 		
+		messageText = new JTextArea();
+		messageText.setBounds(150, 150, 600, 300);
+		messageText.setBackground(Color.black);
+		messageText.setForeground(Color.white);
+		messageText.setFont(normalFont);
+		messageText.setWrapStyleWord(true);
+		messageText.setLineWrap(true);
+		message.add(messageText);
+		
+		f.getContentPane().setLayout(groupLayout);
+		f.setVisible(true);
+				
 		start();
 
 	}
+	
 	public void start() {
 		position = "start";
 		
