@@ -13,6 +13,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.UIManager;
 
 
@@ -23,12 +24,12 @@ public class Game {
 	JLabel startLabel;
 	Font title = new Font("Tempus Sans ITC", Font.PLAIN, 60);
 	Font normalFont = new Font("Tempus Sans ITC", Font.PLAIN, 15);
-	JButton start, choice1, choice2, choiceCancel;
+	JButton start, choice1, choice2, choiceCancel, choiceTitle;
 	JTextArea messageText;
 	TitleScreenClicks tsClick = new TitleScreenClicks();
 	ChoiceHandler cHandler = new ChoiceHandler();
 	cancelClick cancelling = new cancelClick();
-	@SuppressWarnings("unused")
+	returnTitle rTitle = new returnTitle();
 	private String position;
 	
 	public Game() {
@@ -105,7 +106,7 @@ public class Game {
 		choiceButton.setBounds(150, 350, 100, 50);
 		choiceButton.setBackground(Color.black);
 		choiceButton.setForeground(Color.black);
-		choiceButton.setLayout(new GridLayout(3, 1));
+		choiceButton.setLayout(new GridLayout(4, 1));
 		con.add(choiceButton);
 		
 		GroupLayout groupLayout = new GroupLayout(f.getContentPane());
@@ -146,6 +147,14 @@ public class Game {
 		choice2.setActionCommand("c2");
 		choiceButton.add(choice2);
 		
+		choiceTitle = new JButton("Play Again");
+		choiceTitle.setBackground(Color.black);
+		choiceTitle.setForeground(Color.white);
+		choiceTitle.setFont(normalFont);
+		choiceTitle.addActionListener(rTitle);
+		choiceTitle.setActionCommand("return");
+		choiceButton.add(choiceTitle);
+		
 		choiceCancel = new JButton("CANCEL");
 		choiceCancel.setBackground(Color.black);
 		choiceCancel.setForeground(Color.white);
@@ -185,6 +194,7 @@ public class Game {
 		choice1.setText("Continue");
 		choice2.setText("");
 		choice2.setVisible(false);
+		choiceTitle.setVisible(false);
 	}
 	
 	public void streets() {
@@ -220,6 +230,7 @@ public class Game {
 		choice2.setText("");
 		choice1.setVisible(false);
 		choice2.setVisible(false);
+		choiceTitle.setVisible(true);
 	}
 	
 	public void lookYourself() {
@@ -255,6 +266,7 @@ public class Game {
 		choice2.setText("");
 		choice1.setVisible(false);
 		choice2.setVisible(false);
+		choiceTitle.setVisible(true);
 	
 	}
 	
@@ -280,6 +292,8 @@ public class Game {
 		choice2.setText("");
 		choice1.setVisible(false);
 		choice2.setVisible(false);
+		choiceTitle.setVisible(true);
+
 	}
 	
 	public void runHide() {
@@ -290,6 +304,8 @@ public class Game {
 		choice2.setText("");
 		choice1.setVisible(false);
 		choice2.setVisible(false);
+		choiceTitle.setVisible(true);
+
 	}
 	
 	public void stayFight() {
@@ -308,6 +324,8 @@ public class Game {
 		choice2.setText("");
 		choice1.setVisible(false);
 		choice2.setVisible(false);
+		choiceTitle.setVisible(true);
+
 	}
 	
 	public void rightRoom() {
@@ -334,6 +352,8 @@ public class Game {
 		choice2.setText("");
 		choice1.setVisible(false);
 		choice2.setVisible(false);
+		choiceTitle.setVisible(true);
+
 	}
 	
 	public void hesistate() {
@@ -370,12 +390,14 @@ public class Game {
 	
 	public void windowEscape() {
 		position = "windowEscape";
-		messageText.setText("Guards attack you and you both die and Japan falls into chaos.");
+		messageText.setText("You jump out of the building but you break your legs. Guards quickly surround you and you both die. Japan falls into chaos.");
 		
 		choice1.setText("");
 		choice2.setText("");
 		choice1.setVisible(false);
 		choice2.setVisible(false);
+		choiceTitle.setVisible(true);
+
 	}
 	
 	public class TitleScreenClicks implements ActionListener {
@@ -390,10 +412,16 @@ public class Game {
 		}
 	}
 	
+	public class returnTitle implements ActionListener {
+		public void actionPerformed(ActionEvent event) {
+			new Game();
+		}
+	}
+	
 	public class ChoiceHandler implements ActionListener {
 		public void actionPerformed(ActionEvent event) {
 			String yourChoice = event.getActionCommand();
-			
+		
 			switch(position) {
 			case "start":
 				switch(yourChoice) {
