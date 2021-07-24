@@ -418,8 +418,13 @@ public class Game {
 	
 	public class returnTitle implements ActionListener {
 		public void actionPerformed(ActionEvent event) {
+			close();
 			new Game();
 		}
+	}
+	
+	public void close() {
+		f.dispose();
 	}
 	
 	public class ChoiceHandler implements ActionListener {
